@@ -1,10 +1,28 @@
 from django.shortcuts import render
 from django.contrib.auth import login,authenticate
-from .forms import SignUpForm
+from .forms import SignUpForm, PostForm
 from django.shortcuts import render,redirect
+from django.views.generic import ListView, CreateView
+from . import models
+from django.urls import reverse_lazy
 
+    
 def home_view(request):
-    return render(request, 'home.html')
+    object = models.Post.objects.all()
+    return render(request,'home.html',{'object':object})
+
+
+def upload_view(request):
+    if request.method=='POST':
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home_view')
+        else:
+            return render(request,'upload.html',{'form':form})
+    else:
+        form = PostForm()
+    return render(request,'upload.html',{'form':form})
 
 def login_view(request):
     if request.method=='POST':
@@ -41,4 +59,3 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request,'signup.html',{'form':form})
-

@@ -17,3 +17,13 @@ def update_profile_signal(sender, instance,created,**kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+
+class Post(models.Model):
+    title = models.TextField()
+    pdf = models.FileField(upload_to='pdfs/',blank = True,null=True,default='null')
+    link = models.CharField(max_length=100,blank=True)
+
+    def __str__(self):
+        return self.title
+

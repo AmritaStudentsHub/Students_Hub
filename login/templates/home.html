@@ -1,1 +1,15 @@
 home
+<td>
+    Upload Files<a href="/upload">Add</a>
+</td>
+
+<h3>Files</h3>
+<ol>
+    {% for post in object %}
+    {% if post.pdf.url != null %}
+        <li><a href="{{post.pdf.url}}">{{ post.title }}</a></li>
+    {% else %}
+        <li><a href="{{post.link}}">{{ post.title }}</a></li>
+    {% endif %}
+    {% endfor %}
+</ol>
