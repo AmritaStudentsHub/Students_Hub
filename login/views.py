@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from .forms import SignUpForm, PostForm
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, CreateView
@@ -11,6 +11,8 @@ def home_view(request):
     object = models.Post.objects.all()
     return render(request,'home.html',{'object':object})
 
+def sample_view(request):
+    return render(request,'sample.html')
 
 def upload_view(request):
     if request.method=='POST':
@@ -59,3 +61,7 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request,'signup.html',{'form':form})
+
+def logout_view(request):
+    logout(request)
+    return redirect(home_view)
