@@ -5,7 +5,8 @@ from django.shortcuts import render,redirect
 from django.views.generic import ListView, CreateView
 from . import models
 from django.urls import reverse_lazy
-
+import json
+from django.http import HttpResponse
     
 def home_view(request):
     object = models.Post.objects.all()
@@ -65,3 +66,17 @@ def signup_view(request):
 def logout_view(request):
     logout(request)
     return redirect(home_view)
+
+def autocompleteModel(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '').capitalize()
+        search_qs = models.Post.objects.filter(title__startswith=q)
+        results = []
+        print (q)
+        for r in search_qs:
+            results.append(r.title)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

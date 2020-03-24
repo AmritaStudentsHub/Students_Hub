@@ -7,9 +7,26 @@
   Hi {{ user.username }}!
   <td>
     Upload Files<a href="/upload">Add</a>
-</td>
+  </td>
 <p><a href="/logout">logout</a></p>
-
+<script>
+  $(document).ready(function(){ 
+      $("#txtSearch").autocomplete({
+          source: "/ajax_calls/search/",
+          minLength: 2,
+          open: function(){
+              setTimeout(function () {
+                  $('.ui-autocomplete').css('z-index', 99);
+              }, 0);
+          }
+        });
+  });
+</script>
+<form id="search" method="POST" action="{% url 'home_view' %}">
+ {% csrf_token %}
+ <input type="text" class="form-control" id="txtSearch" name="txtSearch">
+ <button type="submit" class="btn btn-default btn-submit">Submit</button>
+ </form>
 <h3>Files</h3>
 <ol>
     {% for post in object %}
