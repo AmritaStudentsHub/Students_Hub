@@ -1,6 +1,21 @@
+{% extends 'base.html' %}
+{%block content%}
+<script>
+  $(document).ready(function(){ 
+      $("#id_course").autocomplete({
+          source: "/ajax_calls/search/",
+          minLength: 2,
+          open: function(){
+              setTimeout(function () {
+                  $('.ui-autocomplete').css('z-index', 99);
+              }, 0);
+          }
+        });
+  });
+</script>
 <h1>Upload Files Page</h1>
 {% if user.is_authenticated %}
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" >
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Submit</button>
@@ -10,3 +25,4 @@
   <a href="{% url 'login_view' %}">login</a>
   <a href="{% url 'signup_view' %}">SignUp</a>
 {% endif %}
+{%endblock%}

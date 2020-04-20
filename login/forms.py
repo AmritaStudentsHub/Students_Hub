@@ -37,4 +37,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields=['title','pdf','link']
+        fields=['course','title','pdf','link']

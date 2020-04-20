@@ -3,6 +3,7 @@ from django.contrib.auth import login,authenticate,logout
 from .forms import SignUpForm, PostForm
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, CreateView
+from django.views.decorators.csrf import csrf_exempt
 from . import models
 from django.urls import reverse_lazy
 import json
@@ -11,15 +12,32 @@ from django.http import HttpResponse
 def home_view(request):
     object = models.Post.objects.all()
     return render(request,'home.html',{'object':object})
+    # if request.method == 'POST':
+    #     name = request.POST['txtSearch']
+    #     print (name)
+    #     if name is not None:
+    #         print('searching')
+    #         object = models.Post.objects.filter(title__startswith=name)
+    #         return render(request,'home.html',{'object':object})
+    #     print ('name is none')
+    #     return render(request,'home.html',{'object':object})
+    # else:
+    #     return render(request,'home.html',{'object':object})
 
-def sample_view(request):
-    return render(request,'sample.html')
+@csrf_exempt
+def search_view(request):
+    print (request)
+    if request.method == 'GET':
+        name = request.GET['txtSearch']
+        object = models.Post.objects.filter(title__startswith=name)
+        return render(request,'search.html',{'object':object,'name':name})
 
 def upload_view(request):
     if request.method=='POST':
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+            print (form)
             return redirect('home_view')
         else:
             return render(request,'upload.html',{'form':form})
@@ -75,6 +93,20 @@ def autocompleteModel(request):
         print (q)
         for r in search_qs:
             results.append(r.title)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+def autocompleteModel1(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '').capitalize()
+        search_qs = models.Post.objects.filter(course__startswith=q)
+        results = []
+        print (q)
+        for r in search_qs:
+            results.append(r.course)
         data = json.dumps(results)
     else:
         data = 'fail'

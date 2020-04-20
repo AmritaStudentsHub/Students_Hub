@@ -9,6 +9,6 @@ urlpatterns=[
     path('login/',views.login_view, name='login_view'),
     path('upload/',views.upload_view, name='upload_view'),
     path('logout/',views.logout_view, name='logout_view'),
-    path('sample/',views.sample_view, name='sample_view'),
+    path('search/',views.search_view,name='search_view'),
     url(r'^ajax_calls/search/', views.autocompleteModel),
 ]

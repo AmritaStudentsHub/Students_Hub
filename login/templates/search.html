@@ -8,6 +8,7 @@
   <td>
     Upload Files<a href="/upload">Add</a>
   </td>
+<p><a href="/">Home</a></p>
 <p><a href="/logout">logout</a></p>
 <script>
   $(document).ready(function(){ 
@@ -28,7 +29,7 @@
  <input type="text" class="form-control" id="txtSearch" name="txtSearch">
  <button type="submit" class="btn btn-default btn-submit">Submit</button>
  </form>
-<h3>Files</h3>
+<h3>Searched Files: <td>{{name}}</td></h3>
 <ol>
     {% for post in object %}
     {% if post.access == True %}
@@ -54,17 +55,17 @@
     <input type="text" class="form-control" id="txtSearch" name="txtSearch">
     <button type="submit" class="btn btn-default btn-submit">Submit</button>
     </form>
-   <h3>Files <td>{{name}}</td></h3>
+   <h3>Searched Files: <td>{{name}}</td></h3>
    <ol>
        {% for post in object %}
        {% if post.access == True %}
        {% if post.pdf.url != null %}
-           <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
+           <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
            
        {% else %}
-           <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
+           <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
        {% endif %}
