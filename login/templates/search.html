@@ -33,7 +33,7 @@ Author URL: http://w3layouts.com
 						{%if user.is_authenticated %}
 						<li class="log-link mr-3"><a class="sign-in"  href="/"><span class="fa fa-user"></span> Hi {{user.username}}</a></li>
 						{% else %}
-						<li class="log-link mr-3"><a class="sign-in"  href="login/"><span class="fa fa-user"></span> Sign In</a></li>
+						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'login_view' %}"><span class="fa fa-user"></span> Sign In</a></li>
 						{%endif%}
 						<!-- <li><a href="#"><span class="fa fa-facebook"></span></a></li>
 						<li><a href="#"><span class="fa fa-instagram"></span></a> </li>
@@ -53,7 +53,7 @@ Author URL: http://w3layouts.com
 						<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span><a href="mailto:info@example.com">Need help? Contact Us </a>
 
 						</li> -->
-						<li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'logout_view' %}"><span class="fa fa-user"></span> Logout</a></li>
 					</ul>
 				</div>
 			</div>
@@ -89,7 +89,7 @@ Author URL: http://w3layouts.com
                   <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/uplod">Upload</a>
+                  <a class="nav-link" href="/upload">Upload</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/approve">Approvals</a>
