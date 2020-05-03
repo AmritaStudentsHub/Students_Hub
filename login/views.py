@@ -225,5 +225,6 @@ def list_of_post_by_category(request,category_slug):
     return render(request,'services.html',context)
 
 def list_of_categories(request):
+    post = models.Post.objects.filter(access=True)
     categories = models.Category.objects.all()
-    return render(request,'services.html',{'categories':categories})
+    return render(request,'services.html',{'categories':categories,'object':post})

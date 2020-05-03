@@ -290,11 +290,24 @@ Author URL: http://w3layouts.com
 					   <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
 						 <td>   {{post.rating}}/5.0</td>
 					   </li>
-					   
+					   {% for comment in post.comments.all %}
+                        <p>{{comment.created}}</p>
+                        <p>{{comment.user}}</p>
+                        <p>{{comment.body}}</p>
+                    {%empty%}
+                        <p>There is no comments</p>
+                    {%endfor%}
 				   {% else %}
 					   <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
 						 <td>   {{post.rating}}/5.0</td>
 					   </li>
+					   {% for comment in post.comments.all %}
+                        <p>{{comment.created}}</p>
+                        <p>{{comment.user}}</p>
+                        <p>{{comment.body}}</p>
+                    {%empty%}
+                        <p>There is no comments</p>
+                    {%endfor%}
 				   {% endif %}
 				   {% endif %}
 			{% endif %}
