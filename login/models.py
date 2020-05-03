@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save,post_delete
 from django.dispatch import receiver
@@ -19,9 +21,23 @@ def update_profile_signal(sender, instance,created,**kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
+class Category(models.Model):
+    name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def get_absolute_url(self):
+        return reverse('list_of_post_by_category',args=[self.slug])
+    def __str__(self):
+        return self.name
+    
 
 class Post(models.Model):
-    course = models.TextField(blank=False,null=False)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE,default='crypto')
     title = models.TextField()
     pdf = models.FileField(upload_to='pdfs/',blank = True,null=True)
     link = models.CharField(max_length=100,blank=True)
@@ -37,7 +53,7 @@ class Post(models.Model):
         return self.title
 
 class Review(models.Model):
-    user = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     reviewed_file = models.ForeignKey(Post,related_name="ratings",on_delete=models.CASCADE)
     rating = models.IntegerField(default=0, validators=[MinValueValidator(0),MaxValueValidator(5)])
 
@@ -47,3 +63,13 @@ class Review(models.Model):
 
 post_delete.connect(Review.update_avg_rating,sender=Review)
 post_save.connect(Review.update_avg_rating,sender=Review)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete = models.CASCADE,related_name="comments")
+    user = models.CharField(max_length=250)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user

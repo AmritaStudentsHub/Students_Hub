@@ -1,0 +1,178 @@
+// Variables
+$crimson: #DC143C;
+
+/*Typography*/
+html {font: 16px 'Lobster', serif;}
+h1 {font-size: 2em;}
+h2 {font-size: 1.75em;}
+h3 {font-size: 1.5em;}
+p {font-size: 1.25em;}
+/*BASE*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+/*Layout*/
+* {box-sizing: border-box;}
+/*Navigation*/
+nav {
+  position: relative;
+  left: -12em;
+  width: 6em;
+  height: 100%;
+  background: $crimson;
+  font-family: 'Roboto Condensed', sans-serif;
+  transition: left .85s linear;
+}
+.nav ul {
+  float: left;
+  width: 100%;
+}
+.nav a,
+.fa-bars,
+.soc-media a {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background .35s;
+  &:hover {background: #eb1f48;}
+  &:active {background: #ed365b;}
+}
+.nav a {
+  padding: 1em .5em;
+  width: 100%
+}
+.fa-bars {
+  position: absolute;
+  left: 0em;
+  padding: .25em 0;
+  z-index: 99;
+  width: 2em;
+  background: $crimson;
+  text-align: center;
+  transition: left .75s ease-in-out;
+  &:hover {cursor: pointer;}
+}
+[type="checkbox"] {
+  display: none;
+  &:checked + label {left: 3em;}
+  &:checked ~ nav {left: 0;}
+}
+/*Social media*/
+.soc-media {
+  position: absolute;
+  bottom: 5px;
+}
+.soc-media li {float: left;}
+.soc-media a {
+  padding: .5em 0;
+  width: 2em;
+  font-weight: normal;
+  text-align: center;
+}
+/*Page Wrapper*/
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: url(http://www.gratisography.com/pictures/119.jpg) no-repeat;
+  background-size: cover;
+}
+.wrapper > h1 {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  color: $crimson;
+  font-size: 3em;
+  text-align: center;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.2);
+}
+/*Pages*/
+section {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;/*hide all on 0% width*/
+  transition: all .75s;
+}
+:target {
+  width: 100%;
+}
+section .content {
+  margin: 1em auto;
+  max-width: 900px;
+  width: 60%;
+  color: $crimson;
+}
+section h1,
+section h2,
+section h3 {
+  margin-bottom: .5em;
+  text-align: center;
+}
+section p {
+  margin: .5em 0;
+  font-family: 'lobster';
+}
+/*Home page*/
+/*About page*/
+.about {
+  background: rgba(255,255,255,.75);
+}
+
+div.stars {
+  width: 200px;
+  display: inline-block;
+}
+input.star { display: none; }
+label.star {
+  float: right;
+  padding: 5px;
+  font-size: 16px;
+  color: #444;
+  transition: all .2s;
+}
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+input.star-1:checked ~ label.star:before { color: #F62; }
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+/*Contact page*/
+.contact {
+  background: rgba(255,255,255,.75)
+}
+.checked {
+  color: orange;
+}
+.map-container,
+.map-container iframe {
+  margin: 2em auto;
+  width: 300px;
+  height: 300px;
+  background: url(http://mapserver.mapy.cz/compose?cx=14.439095639754257&cy=50.05115503092217&w=1024&h=480&scale=0.7&z=15&palette=32) no-repeat center center;
+  border: .5em solid $crimson;
+  border-radius: 50%;
+  overflow: hidden;
+} 

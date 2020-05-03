@@ -1,17 +1,20 @@
-from django.shortcuts import render
 from django.contrib.auth import login,authenticate,logout
-from .forms import SignUpForm, PostForm
-from django.shortcuts import render,redirect
+from .forms import SignUpForm, PostForm, CommentForm
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponseRedirect
 from django.views.generic import ListView, CreateView
 from django.views.decorators.csrf import csrf_exempt
 from . import models
 from django.urls import reverse_lazy
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
+from django.views.decorators.http import require_POST
     
 def home_view(request):
     object = models.Post.objects.all()
-    return render(request,'home.html',{'object':object})
+    categories = models.Category.objects.all()
+    print (categories)
+    approvals = models.Post.objects.filter(access=False).count()
+    return render(request,'index.html',{'object':object,'approvals':approvals,'categories':categories})
     # if request.method == 'POST':
     #     name = request.POST['txtSearch']
     #     print (name)
@@ -24,6 +27,34 @@ def home_view(request):
     # else:
     #     return render(request,'home.html',{'object':object})
 
+def approve_view(request):
+    object = models.Post.objects.all()
+    approvals = models.Post.objects.filter(access=False).count()
+    print (object)
+    if request.user.is_staff:
+        object = models.Post.objects.filter(access=False)
+        print(object)
+        return render(request,'contact.html',{'object':object,'approvals':approvals})
+    else:
+        return HttpResponse('You don\'t have access to this page')
+
+def logout_request(request):
+    logout(request)
+    return redirect("/")
+
+def add_comment(request,category_slug,id):
+    post = get_object_or_404(models.Post,id=id)
+    if request.method=='POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            print('saved')
+            return redirect('object_view',category_slug=post.category,id=post.id)
+    else:
+        form=CommentForm()
+    return render(request,'add_comment.html',{'form':form})
 @csrf_exempt
 def search_view(request):
     print (request)
@@ -34,18 +65,61 @@ def search_view(request):
 
 def upload_view(request):
     if request.method=='POST':
+        # print (request.Post,request.values)
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             print (form)
             return redirect('home_view')
         else:
-            return render(request,'upload.html',{'form':form})
+            return render(request,'about.html',{'form':form})
     else:
         form = PostForm()
-    return render(request,'upload.html',{'form':form})
+    return render(request,'about.html',{'form':form})
+
+def object_view(request,category_slug,id):
+    post = get_object_or_404(models.Post,id=id)
+    return render(request,'object_view.html',{'post':post,'category_slug':category_slug})
+
+def approve_file_view(request):
+    object = models.Post.objects.all()
+    print ('it is working')
+    # set the status if request method is post
+    if request.method == "POST":
+        order_id = request.POST.get("id")
+        print (order_id)
+        # get order instance by id and change the status
+        order = models.Post.objects.get(pk=order_id)
+        order.access = True
+        order.save()
+    # since the render data is the same, you can just call it once.
+    return redirect('http://localhost:8000/approve/')
+    # return render(request, 'approve_page.html', {'object':object})
+
+def delete_view(request,id):
+    if request.user.is_staff:
+        obj = get_object_or_404(models.Post, id = id) 
+    
+        if request.method =="POST": 
+            # delete object 
+            obj.delete() 
+            # after deleting redirect to  
+            # home page 
+            return HttpResponseRedirect("/") 
+    
+        return render(request, "delete_view.html")
+    else:
+        return redirect('/')
+    # print ('delete is working')
+    # return approve_view(request)
+
+def sample_view(request):
+    return render(request,'samplehome.html')
+
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method=='POST':
         username = request.POST['user']
         password = request.POST['user_pass']
@@ -61,6 +135,8 @@ def login_view(request):
     return render(request,'login.html',{'err':''})
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('/')
     if request.method=='POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -112,3 +188,42 @@ def autocompleteModel1(request):
         data = 'fail'
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
+
+@require_POST
+def rate_vector(request, vector_id):
+    # if not request.user.is_authenticated():
+    #     return HttpResponseForbidden()
+
+    rating = request.POST['rating']
+
+    vector = get_object_or_404(models.Post, id=vector_id)
+
+    # try:
+    #     vector_rating = models.Review.objects.get(rating=vector, user=request.user)
+    #     created = False
+    # except ObjectDoesNotExist:
+    #     vector_rating = models.Review(rating=vector, user=request.user)
+    #     created = True
+    vector_rating = models.Review(reviewed_file=vector, user=request.user)
+    #vector_rating, created = VectorRating.objects.get_or_create(vector=vector, user=request.user)
+    vector_rating.rating = rating
+    vector_rating.save()
+
+    data = {
+        "rating": vector_rating.reviewed_file.rating
+    }
+    return redirect('/')
+
+def list_of_post_by_category(request,category_slug):
+    categories = models.Category.objects.all()
+    post = models.Post.objects.filter(access=True)
+
+    if category_slug:
+        category = get_object_or_404(models.Category,slug=category_slug)
+        post = post.filter(category=category)
+    context = {'categories':categories,'object':post,'category':category}
+    return render(request,'services.html',context)
+
+def list_of_categories(request):
+    categories = models.Category.objects.all()
+    return render(request,'services.html',{'categories':categories})

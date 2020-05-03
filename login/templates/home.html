@@ -8,6 +8,9 @@
   <td>
     Upload Files<a href="/upload">Add</a>
   </td>
+  {%if user.is_staff %}
+  <td>Aprove files<a href="/approve">{{approvals}}</a></td>
+  {% endif %}
 <p><a href="/logout">logout</a></p>
 <script>
   $(document).ready(function(){ 
