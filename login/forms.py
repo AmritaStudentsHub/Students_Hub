@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post,Comment,Category
 
 class SignUpForm(UserCreationForm):
     # first_name = forms.CharField(max_length=100,help_text='First Name')
@@ -35,6 +35,19 @@ class SignUpForm(UserCreationForm):
 
 class PostForm(forms.ModelForm):
 
+    # category = forms.CharField(widget=forms.TextInput(attrs={'class':'contact-input,'}))
+    title =  forms.CharField(widget=forms.TextInput(attrs={'class':'contact-input,'}))
+
     class Meta:
         model = Post
-        fields=['course','title','pdf','link']
+        fields=['category','title','pdf','link']
+
+# class CategoryForm(forms.ModelForm):
+#     class Meta:
+#         model = Category
+#         fields = ['name']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields=['user','body']

@@ -1,0 +1,24 @@
+
+<a href="{% url 'home_view' %}">Home</a>
+
+{% for post in object %}
+    <form method="POST" id =update_{{post.pk}} action="{% url 'approve_file_view' %}" enctype='multipart/form-data'>
+        {% csrf_token %}
+    {% if post.access == False %}
+    {% if post.pdf.url is not None %}
+        <li><a href="{{post.pdf.url}}">{{ post.title }}</a>
+            <input type="hidden" value="{{post.pk}}" name="id">
+            <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
+            <a href="{{post.id}}/delete">delete</a>
+        </li>
+        
+    {% else %}
+        <li><a href="{{post.link}}">{{ post.title }}</a>
+            <input type="hidden" value="{{post.pk}}" name="id">
+            <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
+            <a href="{{post.id}}/delete">delete</a>
+        </li>
+    {% endif %}
+    {% endif %}
+</form>
+    {% endfor %}

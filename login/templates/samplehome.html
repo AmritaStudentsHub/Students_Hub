@@ -1,0 +1,155 @@
+{%load static%}
+{% load compress %}
+
+{% compress css %}
+    <link type="text/x-scss" href="{% static 'bootstrap/bootstrap.scss' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'css/rules.scss' %}">
+{% endcompress %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/rules.css' %}">
+<input type="checkbox" id="checkbox" /><label class="fa fa-bars fa-2x" for="checkbox"></label>
+<nav role='navigation'>
+  <ul class="nav">
+    <li><a href="#page-home">Home</a></li>
+    <li><a href="#page-about">About</a></li>
+    <li><a href="#page-contact">Contact Us</a></li>
+  </ul>
+  <ul class="soc-media">
+    <li><a href="#" class="fa fa-twitter"></a></li>
+    <li><a href="#" class="fa fa-facebook"></a></li>
+    <li><a href="#" class="fa fa-google-plus"></a></li>
+  </ul>
+</nav>
+<main class="wrapper">
+  <div class="overlay"></div>
+  <h1> STUDENTS HUB <h1>
+      <h2>All the resources available in one place.</h2>
+      <br>
+      <div style="background-color:lightblue">
+        <p>You can learn, share and grow here.</p>
+        <br>
+      </div>
+    <!-- We could add the subject categories into the below unordered list. -->
+      <ul>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <li>Operating Systems<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li><a href = "ES.html"> Embedded Systems<a/><div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li>Data Structures and Algorithms<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li>Compiler Design<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li>Computer Networks<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li>Software Engineering<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+        <li>OOPS<div class="stars">
+            <form action="">
+              <input class="star star-5" id="star-5" type="radio" name="star" />
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="star" />
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="star" />
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="star" />
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" type="radio" name="star" />
+              <label class="star star-1" for="star-1"></label>
+            </form>
+          </div>
+        </li>
+      </ul>
+
+      <section class="home" id="page-home"></section>
+      <section class="about" id="page-about">
+        <div class="content">
+          <h1>So who we are?</h1>
+          <p>We make it easier for the students and curious learners to gain knowledge. Instead of browsing around in different websites. We collect data from different sources and accumulate it here in order to make it easy for the users.</p>
+        </div>
+      </section>
+      <section class="contact" id="page-contact">
+        <div class="content">
+          <h1>Where Can You Find Us...</h1>
+          <h2>We are students from Amrita School of Engineering<h2>
+          <div class="map-container"></div>
+        </div>
+      </section>
+</main>
