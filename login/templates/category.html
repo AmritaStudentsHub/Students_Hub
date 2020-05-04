@@ -213,48 +213,41 @@ Author URL: http://w3layouts.com
                </div>
            </section>
            <br><br>
-				<div class="row title-content">
-					<div class="col-lg-4 title-left">
-						<h3 class="hny-title">What do you want to Learn today?</h3>
-					</div>
-					<div class="col-lg-8 title-info">
-						<p>Let's learn, share and grow together!</p>
-					</div>
-				</div>
+
 
 <br>
-				<div class="col-lg-4 title-left">
                     <h3 class="hny-title">Course : {{category}}</h3>
-					<h3 class="hny-title">Files Available : {{object.count}}</h3>
+					<h4 class="hny-title">Files Available : {{object.count}}</h4>
 
-				</div>
+
 
 				{% if user.is_authenticated %}
 				<ol>
 					{% for post in object %}
 					{% if post.access == True %}
 					{% if post.pdf.url != null %}
-						<li><a href="{{post.pdf.url}}">{{ post.title }}</a>
-						  <td>   {{post.rating}}/5.0</td>
+						<li><a href="{{post.pdf.url}}"><b><i>{{ post.title }}<i></b></a>
+						  <br><td>Rating:  {{post.rating}}/5.0</td>
 						</li>
 						<form action="{% url 'rate_vector' post.id %}" method="POST">
 							{% csrf_token %}
 							<input type="number" min="1" max="5" id="rating" name="rating">
-							<input type="submit" name="submit" value="GO">
+							<input type="submit" name="submit" value="Rate">
 					</form>
-						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a></br><br>
 
 
 					{% else %}
-						<li><a href="{{post.link}}">{{ post.title }}</a>
-						  <td>   {{post.rating}}/5.0</td>
-						</li>
+						<li><a href="{{post.link}}"><b><i>{{ post.title }}</i></b></a>
+						 <br>Rating:   {{post.rating}}/5.0</td>
+           </li>
 						<form action="{% url 'rate_vector' post.id %}" method="POST">
 							{% csrf_token %}
 							<input type="number" min="1" max="5" id="rating" name="rating">
-							<input type="submit" name="submit" value="GO">
+							<input type="submit" name="submit" value="Rate">
 					</form>
 						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+          </br>
 
 					{% endif %}
 					{% endif %}

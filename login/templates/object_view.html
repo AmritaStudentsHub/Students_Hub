@@ -175,16 +175,34 @@ Author URL: http://w3layouts.com
 			<ol>
 				{% if post.access == True %}
 				{% if post.pdf.url != null %}
-					<li><a href="{{post.pdf.url}}">{{ post.title }}</a>
-					  <td>   {{post.rating}}/5.0</td>
+					<li><a href="{{post.pdf.url}}"><h3>{{ post.title }}</h3></a>
+					  <td>Rating: {{post.rating}}/5.0</td>
 					</li>
-                    <a href="{% url 'add_comment' category_slug=post.category  id=post.id %}">add a comment</a>
+        </br>
+                    <a href="{% url 'add_comment' category_slug=post.category  id=post.id %}">Add a comment</a>
+                    <br>
+                  <br>
                     {% for comment in post.comments.all %}
-                        <p>{{comment.created}}</p>
-                        <p>{{comment.user}}</p>
-                        <p>{{comment.body}}</p>
+                    <br>
+                    <div class="row">
+                    <div class="col-sm-1">
+                    <div class="thumbnail">
+                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="70" width ="70">
+                    </div><!-- /thumbnail -->
+                    </div><!-- /col-sm-1 -->
+
+                    <div class="col-sm-5">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <strong>{{comment.user}}</strong> <span class="text-muted">commented on {{comment.created}}</span>
+                    </div>
+                    <div class="panel-body">
+                    {{comment.body}}                    </div><!-- /panel-body -->
+                    </div><!-- /panel panel-default -->
+                    </div><!-- /col-sm-5 -->
+                                     </div>
                     {%empty%}
-                        <p>There is no comments</p>
+                        <p>There are no comments</p>
                     {%endfor%}
 
 
@@ -192,13 +210,28 @@ Author URL: http://w3layouts.com
 					<li><a href="{{post.link}}">{{ post.title }}</a>
 					  <td>   {{post.rating}}/5.0</td>
 					</li>
-					<a href="{% url 'add_comment' category_slug=post.category  id=post.id %}">add a comment</a>
+          <br>
+					<a href="{% url 'add_comment' category_slug=post.category  id=post.id %}">Add a comment</a>
+          <br><br>
                     {% for comment in post.comments.all %}
-                        <p>{{comment.created}}</p>
-                        <p>{{comment.user}}</p>
-                        <p>{{comment.body}}</p>
+                    <section class="w3l-content-5">
+                      <!-- /content-6-section -->
+                        <div class="content-5-main">
+                           <div class="container">
+                               <div class="content-info-in row">
+                                   <div class="content-gd col-lg-6">
+                                     <p>{{comment.created}}</p>
+                                     <p>{{comment.user}}</p>
+                                     <p>{{comment.body}}</p>
+                                   </div>
+
+                               </div>
+
+                             </div>
+                           </div>
+                       </section>
                     {%empty%}
-                        <p>There is no comments</p>
+                        <p>There are no comments</p>
                     {%endfor%}
 				{% endif %}
 				{% endif %}
