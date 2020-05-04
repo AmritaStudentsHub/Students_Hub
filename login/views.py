@@ -213,7 +213,7 @@ def rate_vector(request, vector_id):
     data = {
         "rating": vector_rating.reviewed_file.rating
     }
-    return HttpResponseRedirect('/category')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def list_of_post_by_category(request,category_slug):
     categories = models.Category.objects.all()
