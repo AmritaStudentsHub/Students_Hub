@@ -57,8 +57,8 @@ Author URL: http://w3layouts.com
         <!--/nav-->
         <nav class="navbar navbar-expand-lg navbar-light fill">
           <div class="container-fluid">
-            <a class="navbar-brand" href="{%url 'home_view'%}">
-              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+            <a class="navbar-brand" href="{%url 'home_view'%}"><i>
+              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a></i>
             <!-- if logo is image enable this
               <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -118,10 +118,10 @@ Author URL: http://w3layouts.com
       <!-- /breadcrumbs-->
       <div class="container">
           <nav aria-label="breadcrumb" class="breadcrumb-info">
-            <h2 class="hny-title text-center">Courses</h2>
+            <h2 class="hny-title text-center"><i>Courses</i></h2>
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Courses</li>
+              <li class="breadcrumb-item"><a href="/"><i>Home</i></a></li>
+              <li class="breadcrumb-item active" aria-current="page"><i>Courses</i></li>
             </ol>
           </nav>
         </div>
@@ -184,7 +184,7 @@ Author URL: http://w3layouts.com
   		</div>
   	</section> -->
 	  <!-- features-4 -->
-
+<i>
 	  <section class="w3l-content-6">
 		<!-- /content-6-section -->
 
@@ -227,50 +227,58 @@ Author URL: http://w3layouts.com
 					{%if category.id == 1%}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/1.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">4th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
 					{%elif category.id == 2 %}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/2.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">4th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 3 %}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/3.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">3rd Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 4 %}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/4.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">6th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 5 %}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/grid1.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">6th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 6 %}
 					<div class="col-lg-3 col-md-6 imghrs">
 						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/team7.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">6th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 7 %}
 					<div class="col-lg-3 col-md-6 imghrs">
-						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/2.jpg'%}" class="img-fluid" alt="" height="230" width="230" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/team4.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">5th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
           {%elif category.id == 8 %}
 					<div class="col-lg-3 col-md-6 imghrs">
-						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/1.jpg'%}" class="img-fluid" alt="" height="230" width="230" align="middle" style="margin:50px 0px">
-							<div class="details"><span class="title">{{category.name}}</span><span class="info">Add Description</span></div>
+						<a class="imghr" href="{% url 'list_of_post_by_category' category_slug=category.slug %}"><img src="{% static 'images/team8.jpg'%}" class="img-fluid" alt="" height="200" width="200" align="middle" style="margin:50px 0px">
+							<div class="details"><span class="title">{{category.name}}</span><span class="info">5th Semester</span></div>
 						</a>
+            <p><i>{{category.name}}</i></p>
 					</div>
 					{%endif%}
 					<!-- <div class="col-lg-3 col-md-6 imghrs">
@@ -440,7 +448,7 @@ Author URL: http://w3layouts.com
             </div>
         </div>
     </div>
-
+</i>
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fa fa-angle-up"></span>

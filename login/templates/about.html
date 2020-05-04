@@ -68,7 +68,7 @@ Author URL: http://w3layouts.com
 			<nav class="navbar navbar-expand-lg navbar-light fill">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="/">
-						<label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+						<label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span><i>Students</label>Hub</i></a>
 					<!-- if logo is image enable this
 						<a class="navbar-brand" href="#index.html">
 							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -122,6 +122,7 @@ Author URL: http://w3layouts.com
 			</nav>
 			<!--//nav-->
     </header>
+    <i>
     <!-- /breadcrumbs-->
     <div class="container">
         <nav aria-label="breadcrumb" class="breadcrumb-info">
@@ -145,11 +146,11 @@ Author URL: http://w3layouts.com
   		if (x.style.display == "none") {
     		x.style.display = "block";
     		y.style.display = "none";
-			z.innerHTML="only link"
+			z.innerHTML="Link"
   		} else {
     		x.style.display = "none";
 			y.style.display = "block";
-			z.innerHTML = "only	pdf"
+			z.innerHTML = "PDF"
 		  }
 	}
 
@@ -172,20 +173,22 @@ Author URL: http://w3layouts.com
 									<div class="eff-4-pink"></div>
 									<a href="services.html"> Read More</a>
 								</div> -->
-								<h3>Upload Files Page</h3>
+								<h3><b>Upload Files Page</b></h3>
 								{% if user.is_authenticated %}
 								<form method="post" enctype="multipart/form-data" >
 									{% csrf_token %}
 									{{ form.as_p }}
-									<button id="name" onclick="myFunction()">only link</button>
-									<button type="submit">Submit</button>
+									<button id="name" onclick="myFunction()">Link</button>
+									<button type="submit">Upload</button>
 									<input type="button" value="Cancel" onclick="history.back()">
 								</form>
 								{% else %}
-									<p>You are not logged in. Either Login or Sign-up in order to access this functionality.</p>
+                <br>
+									<div><strong><i>You are not logged in. Either Login or Sign-up in order to access this functionality.</i></strong></div>
+                  <br>
 									<a href="{% url 'login_view' %}">Login</a>
                   <br><br>
-                  <p>OR</p>
+                  <p><i>OR</i></p>
 									<a href="{% url 'signup_view' %}">SignUp</a>
 								{% endif %}
 							</div>
@@ -402,7 +405,7 @@ Author URL: http://w3layouts.com
               </div>
           </div>
       </div>
-
+</i>
       <!-- move top -->
       <button onclick="topFunction()" id="movetop" title="Go to top">
           <span class="fa fa-angle-up"></span>

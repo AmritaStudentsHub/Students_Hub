@@ -58,7 +58,7 @@ Author URL: http://w3layouts.com
         <nav class="navbar navbar-expand-lg navbar-light fill">
           <div class="container-fluid">
             <a class="navbar-brand" href="{%url 'home_view'%}">
-              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span><i>Students</label>Hub</i></a>
             <!-- if logo is image enable this
               <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -115,7 +115,7 @@ Author URL: http://w3layouts.com
         </nav>
         <!--//nav-->
       </header>
-      <!-- /breadcrumbs-->
+      <!-- /breadcrumbs--><i>
       <div class="container">
           <nav aria-label="breadcrumb" class="breadcrumb-info">
             <h2 class="hny-title text-center">Courses</h2>
@@ -218,9 +218,7 @@ Author URL: http://w3layouts.com
 <br>
                     <h3 class="hny-title">Course : {{category}}</h3>
 					<h4 class="hny-title">Files Available : {{object.count}}</h4>
-
-
-
+<br>
 				{% if user.is_authenticated %}
 				<ol>
 					{% for post in object %}
@@ -246,7 +244,7 @@ Author URL: http://w3layouts.com
 							<input type="number" min="1" max="5" id="rating" name="rating">
 							<input type="submit" name="submit" value="Rate">
 					</form>
-						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
           </br>
 
 					{% endif %}
@@ -370,7 +368,7 @@ Author URL: http://w3layouts.com
             </div>
         </div>
     </div>
-
+</i>
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fa fa-angle-up"></span>

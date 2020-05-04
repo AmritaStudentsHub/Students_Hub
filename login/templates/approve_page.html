@@ -11,7 +11,7 @@
             <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
             <a href="{{post.id}}/delete">delete</a>
         </li>
-        
+
     {% else %}
         <li><a href="{{post.link}}">{{ post.title }}</a>
             <input type="hidden" value="{{post.pk}}" name="id">

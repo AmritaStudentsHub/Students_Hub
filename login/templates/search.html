@@ -72,7 +72,7 @@ Author URL: http://w3layouts.com
         <nav class="navbar navbar-expand-lg navbar-light fill">
           <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span><i>Students</label>Hub</a></i>
             <!-- if logo is image enable this
               <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -123,7 +123,7 @@ Author URL: http://w3layouts.com
           </div>
         </nav>
         <!--//nav-->
-      </header>
+      </header><i>
       <!-- /breadcrumbs-->
       <div class="container">
           <nav aria-label="breadcrumb" class="breadcrumb-info">
@@ -200,12 +200,12 @@ Author URL: http://w3layouts.com
 			<div class="container py-lg-5">
 
 				<div class="row title-content">
-					<div class="col-lg-4 title-left">
 
 
 
 
-<h3 class="hny-title">Files Found : {{object.count}}</h3>
+
+<h3 class="hny-title"><strong>Files Found : {{object.count}}</strong></h3>
 
 				<div class="col-lg-4 title-left">
 
@@ -224,7 +224,8 @@ Author URL: http://w3layouts.com
           <input type="number" min="1" max="5"  id="rating" name="rating">
           <input type="submit" name="submit" value="add rating">
       </form>
-        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
+        <br></br>
 
     {% else %}
         <li><a href="{{post.link}}">{{ post.title }}[link]</a>
@@ -235,12 +236,12 @@ Author URL: http://w3layouts.com
           <input type="number" min="1" max="5"  id="rating" name="rating">
           <input type="submit" name="submit" value="add rating">
       </form>
-        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br>
     {% endif %}
     {% endif %}
     {% endfor %}
 </ol>
-{% else %}
+{% else %}</div>
    <h3>Searched Files: <td>{{name}}</td></h3>
    <ol>
        {% for post in object %}
@@ -249,18 +250,18 @@ Author URL: http://w3layouts.com
            <li><a href="{% url 'login_view'%}">{{ post.title }}[pdf]</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
-           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br></br>
 
        {% else %}
            <li><a href="{%url 'login_view'%}">{{ post.title }}[link]</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
-           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
        {% endif %}
        {% endif %}
        {% endfor %}
 {% endif %}
-			</div>
+
 
 		</div>
 		</div>

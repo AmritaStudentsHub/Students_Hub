@@ -57,7 +57,7 @@ Author URL: http://w3layouts.com
         <nav class="navbar navbar-expand-lg navbar-light fill">
           <div class="container-fluid">
             <a class="navbar-brand" href="{%url 'home_view'%}">
-              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span><i>Students</label>Hub</a></i>
             <!-- if logo is image enable this
               <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -81,7 +81,7 @@ Author URL: http://w3layouts.com
                 </li>
                 {%if user.is_staff %}
   							<li class="nav-item">
-  								<a class="nav-link" href="/approve">Approvals {{approvals}}</a>
+  								<a class="nav-link" href="/approve">Pending Approvals {{approvals}}</a>
   							</li>
   							{%endif%}
 
@@ -114,7 +114,7 @@ Author URL: http://w3layouts.com
         </nav>
         <!--//nav-->
       </header>
-      <!-- /breadcrumbs-->
+      <!-- /breadcrumbs--><i>
       <div class="container">
           <nav aria-label="breadcrumb" class="breadcrumb-info">
             <h2 class="hny-title text-center">Courses</h2>
@@ -172,10 +172,10 @@ Author URL: http://w3layouts.com
 			</div>
 
 			{% if user.is_authenticated %}
-			<ol>
+			<ul>
 				{% if post.access == True %}
 				{% if post.pdf.url != null %}
-					<li><a href="{{post.pdf.url}}"><h3>{{ post.title }}</h3></a>
+					<li><a href="{{post.pdf.url}}"><h3><b>{{ post.title}} </b><h3></a>
 					  <td>Rating: {{post.rating}}/5.0</td>
 					</li>
         </br>
@@ -197,7 +197,7 @@ Author URL: http://w3layouts.com
                     <strong>{{comment.user}}</strong> <span class="text-muted">commented on {{comment.created}}</span>
                     </div>
                     <div class="panel-body">
-                    {{comment.body}}                    </div><!-- /panel-body -->
+                    <span style="background-color:#FCDEC0">{{comment.body}}</span>              </div><!-- /panel-body -->
                     </div><!-- /panel panel-default -->
                     </div><!-- /col-sm-5 -->
                                      </div>
@@ -207,63 +207,94 @@ Author URL: http://w3layouts.com
 
 
 				{% else %}
-					<li><a href="{{post.link}}">{{ post.title }}</a>
+					<li><a href="{{post.link}}"><h3><b>{{ post.title }}</b></h3></a>
 					  <td>   {{post.rating}}/5.0</td>
 					</li>
           <br>
 					<a href="{% url 'add_comment' category_slug=post.category  id=post.id %}">Add a comment</a>
           <br><br>
                     {% for comment in post.comments.all %}
-                    <section class="w3l-content-5">
-                      <!-- /content-6-section -->
-                        <div class="content-5-main">
-                           <div class="container">
-                               <div class="content-info-in row">
-                                   <div class="content-gd col-lg-6">
-                                     <p>{{comment.created}}</p>
-                                     <p>{{comment.user}}</p>
-                                     <p>{{comment.body}}</p>
-                                   </div>
+                    <br>
+                    <div class="row">
+                    <div class="col-sm-1">
+                    <div class="thumbnail">
+                    <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="70" width ="70">
+                    </div><!-- /thumbnail -->
+                    </div><!-- /col-sm-1 -->
 
-                               </div>
-
-                             </div>
-                           </div>
-                       </section>
+                    <div class="col-sm-5">
+                    <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <strong>{{comment.user}}</strong> <span class="text-muted">commented on {{comment.created}}</span>
+                    </div>
+                    <div class="panel-body">
+                      <span style="background-color:#FCDEC0">{{comment.body}}</span>                    </div><!-- /panel-body -->
+                    </div><!-- /panel panel-default -->
+                    </div><!-- /col-sm-5 -->
+                                     </div>
                     {%empty%}
                         <p>There are no comments</p>
                     {%endfor%}
 				{% endif %}
 				{% endif %}
-			</ol>
+			</ul>
 			{% else %}
-			  <p>You are not logged in if you wanted to see the files login</p>
-			   <ol>
+			  <p>You are not logged in. To access the files please signup or login.</p>
+			   <ul>
 				   {% if post.access == True %}
 				   {% if post.pdf.url != null %}
-					   <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
+					   <li><a href="{%url 'login_view'%}"><h3><b>{{ post.title }}</b></h3></a>
 						 <td>   {{post.rating}}/5.0</td>
-					   </li>
-					   {% for comment in post.comments.all %}
-                        <p>{{comment.created}}</p>
-                        <p>{{comment.user}}</p>
-                        <p>{{comment.body}}</p>
-                    {%empty%}
-                        <p>There is no comments</p>
-                    {%endfor%}
+           </li><br>
+					   {% for comment in post.comments.all %}<br>
+             <div class="row">
+             <div class="col-sm-1">
+             <div class="thumbnail">
+             <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="70" width ="70">
+             </div><!-- /thumbnail -->
+             </div><!-- /col-sm-1 -->
+
+             <div class="col-sm-5">
+             <div class="panel panel-default">
+             <div class="panel-heading">
+             <strong>{{comment.user}}</strong> <span class="text-muted">commented on {{comment.created}}</span>
+             </div>
+             <div class="panel-body">
+               <span style="background-color:#FCDEC0">{{comment.body}}</span>                    </div><!-- /panel-body -->
+             </div><!-- /panel panel-default -->
+             </div><!-- /col-sm-5 -->
+                         </div>
+             {%empty%}
+                 <p>There are no comments</p>
+             {%endfor%}
 				   {% else %}
 					   <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
 						 <td>   {{post.rating}}/5.0</td>
 					   </li>
-					   {% for comment in post.comments.all %}
-                        <p>{{comment.created}}</p>
-                        <p>{{comment.user}}</p>
-                        <p>{{comment.body}}</p>
-                    {%empty%}
-                        <p>There is no comments</p>
-                    {%endfor%}
+					   {% for comment in post.comments.all %}<br>
+             <div class="row">
+             <div class="col-sm-1">
+             <div class="thumbnail">
+             <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="70" width ="70">
+             </div><!-- /thumbnail -->
+             </div><!-- /col-sm-1 -->
+
+             <div class="col-sm-5">
+             <div class="panel panel-default">
+             <div class="panel-heading">
+             <strong>{{comment.user}}</strong> <span class="text-muted">commented on {{comment.created}}</span>
+             </div>
+             <div class="panel-body">
+               <span style="background-color:#FCDEC0">{{comment.body}}</span>                    </div><!-- /panel-body -->
+             </div><!-- /panel panel-default -->
+             </div><!-- /col-sm-5 -->
+                              </div>
+             {%empty%}
+                 <p>There are no comments</p>
+             {%endfor%}
 				   {% endif %}
 				   {% endif %}
+         </ul>
 			{% endif %}
 
 		</div>
@@ -324,6 +355,7 @@ Author URL: http://w3layouts.com
             </div>
         </div>
     </div>
+  </i>
 
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">
