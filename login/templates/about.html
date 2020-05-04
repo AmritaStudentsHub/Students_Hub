@@ -136,7 +136,24 @@ Author URL: http://w3layouts.com
 	</div>
 	<!--//banner-slider-->
 </section>
+<script>
+	document.getElementById("id_pdf").style.display ="none";
+	function myFunction() {
+  		var x = document.getElementById("id_pdf");
+ 		var y = document.getElementById("id_link");
+		var z = document.getElementById("name");
+  		if (x.style.display == "none") {
+    		x.style.display = "block";
+    		y.style.display = "none";
+			z.innerHTML="only link"
+  		} else {
+    		x.style.display = "none";
+			y.style.display = "block";
+			z.innerHTML = "only	pdf"
+		  }
+	}
 
+</script>
 
 <section class="w3l-wecome-content-6">
 	<!-- /content-6-section -->
@@ -160,6 +177,7 @@ Author URL: http://w3layouts.com
 								<form method="post" enctype="multipart/form-data" >
 									{% csrf_token %}
 									{{ form.as_p }}
+									<button id="name" onclick="myFunction()">only link</button>
 									<button type="submit">Submit</button>
 									<input type="button" value="Cancel" onclick="history.back()">
 								</form>

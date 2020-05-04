@@ -36,7 +36,7 @@ class SignUpForm(UserCreationForm):
 class PostForm(forms.ModelForm):
 
     # category = forms.CharField(widget=forms.TextInput(attrs={'class':'contact-input,'}))
-    title =  forms.CharField(widget=forms.TextInput(attrs={'class':'contact-input,'}))
+    title =  forms.CharField(widget=forms.TextInput(attrs={'class':'contact-input',}))
 
     class Meta:
         model = Post
@@ -48,6 +48,7 @@ class PostForm(forms.ModelForm):
 #         fields = ['name']
 
 class CommentForm(forms.ModelForm):
+    user = forms.CharField(widget=forms.TextInput(attrs={'readonly':'True',}))
     class Meta:
         model = Comment
         fields=['user','body']

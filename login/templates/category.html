@@ -1,0 +1,431 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>StudentsHub:Courses</title>
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'css/style-starter.css'%}">
+  <!-- Template CSS -->
+  <link href="//fonts.googleapis.com/css?family=Muli:300,300i,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700,900&display=swap" rel="stylesheet">
+  <!-- Template CSS -->
+
+</head>
+<body>
+
+<!--/top-header-content-->
+<section class="w3l-top-header-content">
+	<div class="hny-top-menu">
+		<div class="top-hd">
+			<div class="container-fluid">
+				<div class="row">
+					<ul class="social-top col-md-7">
+						{%if user.is_authenticated %}
+						<li class="log-link mr-3"><a class="sign-in"  href="/"><span class="fa fa-user"></span> Hi {{user.username}}</a></li>
+						{% else %}
+						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'login_view' %}"><span class="fa fa-user"></span> Sign In</a></li>
+						{%endif%}
+
+					</ul>
+					<ul class="accounts col-md-5">
+
+						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'logout_view' %}"><span class="fa fa-user"></span> Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</section>
+<!--//top-header-content-->
+
+<!--w3l-banner-slider-main-->
+<section class="w3l-banner-slider-main w3l-inner-page-main">
+    <div class="breadcrumb-infhny">
+      <header class="top-headerhny">
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{%url 'home_view'%}">
+              <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+            <!-- if logo is image enable this
+              <a class="navbar-brand" href="#index.html">
+                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+              </a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mx-lg-auto ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/upload">Upload</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{%url 'list_of_categories'%}">Courses</a>
+                </li>
+                {%if user.is_staff %}
+  							<li class="nav-item">
+  								<a class="nav-link" href="/approve">Pending Approvals {{approvals}}</a>
+  							</li>
+  							{%endif%}
+
+
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li> -->
+              </ul>
+
+            </div>
+            <script>
+				$(document).ready(function(){
+					$("#txtSearch").autocomplete({
+						source: "/ajax_calls/search/",
+						minLength: 2,
+						open: function(){
+							setTimeout(function () {
+								$('.ui-autocomplete').css('z-index', 99);
+							}, 0);
+						}
+					  });
+				});
+			  </script>
+			<form id="search" method="GET" action="{% url 'search_view' %}" class="d-flex searchhny-form" onsubmit="window.location.reload();myButton.disabled = true;   return true;">
+				<!-- {% csrf_token %} -->
+				<input type="text" class="form-control" placeholder="Search Here..." required='required' id="txtSearch" name="txtSearch">
+				<button type="submit" class="btn btn-default btn-submit"><span class="fa fa-search" ></span></button>
+				</form>
+          </div>
+        </nav>
+        <!--//nav-->
+      </header>
+      <!-- /breadcrumbs-->
+      <div class="container">
+          <nav aria-label="breadcrumb" class="breadcrumb-info">
+            <h2 class="hny-title text-center">Courses</h2>
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Courses</li>
+            </ol>
+          </nav>
+        </div>
+            <!-- //breadcrumbs-->
+    </div>
+    <!--//banner-slider-->
+  </section>
+
+
+  	<!-- <section class="features-6">
+  		<div class="features6-block py-5">
+  			<div class="container py-lg-5">
+  				<div class="row title-content">
+  					<div class="col-lg-4 title-left">
+  						<h3 class="hny-title">What We Provide</h3>
+  					</div>
+  					<div class="col-lg-8 title-info">
+  						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae eligendi minima
+  							accusantium
+  							reiciendis, cupiditate optio corrupti quis quam at!.Duis aute irure dolor in reprehenderit
+  							in voluptate velit esse cillum.</p>
+  					</div>
+  				</div>
+  				<div class="features6-grids text-center mt-5">
+					<img src="{% static 'images/bg3.jpg'%}" class="img-fluid" alt="">
+
+					<div class="three-grids d-grid grid-columns-3">
+							<div class="grid">
+								<div class="icon">
+									<span class="fa fa-id-card-o" aria-hidden="true"></span>
+								</div>
+								<div class="icon-info">
+									<h4><a href="#">Trusted Content</a></h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sint consectetur quasi mollitia.</p>
+								</div>
+							</div>
+							<div class="grid">
+								<div class="icon">
+									<span class="fa fa-pencil-square-o" aria-hidden="true"></span>
+								</div>
+								<div class="icon-info">
+									<h4><a href="#">Learning into Practice</a></h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sint consectetur quasi mollitia.</p>
+								</div>
+							</div>
+							<div class="grid">
+								<div class="icon">
+									<span class="fa fa-graduation-cap" aria-hidden="true"></span>
+								</div>
+								<div class="icon-info">
+									<h4><a href="#">
+											Personalize Learning
+											</a></h4>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sint consectetur quasi mollitia.</p>
+								</div>
+							</div>
+						</div>
+  				</div>
+  			</div>
+  		</div>
+  	</section> -->
+	  <!-- features-4 -->
+
+	  <section class="w3l-content-6">
+		<!-- /content-6-section -->
+
+		<div class="content-6-mian py-5">
+
+			<div class="container py-lg-5">
+        <section class="w3l-content-5">
+
+          <!-- /content-6-section -->
+            <div class="content-5-main">
+               <div class="container">
+                   <div class="content-info-in row">
+                       <div class="content-gd col-lg-6">
+
+                           <h3 class="hny-title two">
+
+        We work hard to prepare every individual for their professional life</h3>
+                       </div>
+                       <div class="content-gd col-lg-6">
+                          <p>It is essential to give the best possible resources to the learners. So we do not compromise on quality or quantity. We make sure we provide everything a user could ask for.</p>
+                       </div>
+
+                   </div>
+
+                 </div>
+               </div>
+           </section>
+           <br><br>
+				<div class="row title-content">
+					<div class="col-lg-4 title-left">
+						<h3 class="hny-title">What do you want to Learn today?</h3>
+					</div>
+					<div class="col-lg-8 title-info">
+						<p>Let's learn, share and grow together!</p>
+					</div>
+				</div>
+
+<br>
+				<div class="col-lg-4 title-left">
+                    <h3 class="hny-title">Course : {{category}}</h3>
+					<h3 class="hny-title">Files Available : {{object.count}}</h3>
+
+				</div>
+
+				{% if user.is_authenticated %}
+				<ol>
+					{% for post in object %}
+					{% if post.access == True %}
+					{% if post.pdf.url != null %}
+						<li><a href="{{post.pdf.url}}">{{ post.title }}</a>
+						  <td>   {{post.rating}}/5.0</td>
+						</li>
+						<form action="{% url 'rate_vector' post.id %}" method="POST">
+							{% csrf_token %}
+							<input type="number" min="1" max="5" id="rating" name="rating">
+							<input type="submit" name="submit" value="GO">
+					</form>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+
+
+					{% else %}
+						<li><a href="{{post.link}}">{{ post.title }}</a>
+						  <td>   {{post.rating}}/5.0</td>
+						</li>
+						<form action="{% url 'rate_vector' post.id %}" method="POST">
+							{% csrf_token %}
+							<input type="number" min="1" max="5" id="rating" name="rating">
+							<input type="submit" name="submit" value="GO">
+					</form>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">view comments</a>
+
+					{% endif %}
+					{% endif %}
+					{% endfor %}
+				</ol>
+				{% else %}
+				  <p>You are not logged in if you wanted to see the files login</p>
+				   <ol>
+					   {% for post in object %}
+					   {% if post.access == True %}
+					   {% if post.pdf.url != null %}
+						   <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
+							 <td>   {{post.rating}}/5.0</td>
+						   </li>
+
+					   {% else %}
+						   <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
+							 <td>   {{post.rating}}/5.0</td>
+						   </li>
+					   {% endif %}
+					   {% endif %}
+					   {% endfor %}
+				{% endif %}
+			</div>
+
+		</div>
+		</div>
+	</section>
+
+<!--<section class="w3l-services-2">-->
+	<!-- /content-6-section -->
+	<!--<div class="services-2-mian py-5">
+		<div class="container py-lg-5">-->
+		<!--	<div class="row title-content">
+				<div class="col-lg-4 title-left">
+					<h3 class="hny-title">Online Learning</h3>
+				</div>
+				<div class="col-lg-8 title-info">
+          <h3>Better learning
+            for better results.</h3>
+          <p>We believe that every student is unique</p>
+				</div>
+			</div>-->
+
+			<!-- /pagination-->
+		<!--	<div class="pagination p1">
+				<ul>
+					<a href="#">
+						<li> <span class="fa fa-angle-double-left" aria-hidden="true"></span></li>
+					</a>
+					<a class="is-active" href="#">
+						<li>1</li>
+					</a>
+					<a href="#">
+						<li>2</li>
+					</a>
+					<a href="#">
+						<li>3</li>
+					</a>
+					<a href="#">
+						<li>4</li>
+					</a>
+					<a href="#">
+						<li>5</li>
+					</a>
+					<a href="#">
+						<li>6</li>
+					</a>
+					<a href="#">
+						<li><span class="fa fa-angle-double-right" aria-hidden="true"></span></li>
+					</a>
+				</ul>
+			</div>-->
+			<!-- //pagination-->
+	<!--	</div>
+	</div>
+</section>-->
+<!-- //courses -->
+<!-- footer -->
+<section class="w3l-footer-16">
+    <div class="w3l-footer-16-main py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 column">
+                    <div class="row">
+                        <div class="col-md-8 column">
+
+                                <a class="logo-2" href="/">
+                                        <label class="lohny-2"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
+
+                            <div class="ad-text-inf">
+                                <p><span class="color-hny">Address :</span>Amrita School of Engineering, Amritapuri</p>
+                             </div>
+                             <div class="ad-text-inf">
+                                    <p><span class="color-hny">Email :</span>studentshub@gmail.com</p>
+                                 </div>
+                                 <div class="ad-text-inf">
+                                        <p><span class="color-hny">Phone :</span>+91-9947388822</p>
+                                     </div>
+                        </div>
+                        <div class="col-md-4 column">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 column column3 mt-lg-0 mt-4">
+
+                </div>
+                <div class="col-lg-4 col-md-6 column column4 mt-lg-0 mt-4">
+                  <div class="col-md-4 column">
+                      <h3>Pages</h3>
+                      <ul class="footer-gd-16">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/upload">Upload</a></li>
+                        <li><a href="{%url 'list_of_categories'%}">Courses</a></li>
+                        {%if user.is_staff %}
+                        <li><a href="/approve">Approvals</a></li>
+                        {%endif%}                      </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-angle-up"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+</section>
+<!-- //footer -->
+</body>
+
+</html>
+
+<script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+<!-- //jQuery-Photo-filter-lightbox-portfolio-plugin -->
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+{%endblock%}

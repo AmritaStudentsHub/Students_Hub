@@ -53,7 +53,8 @@ def add_comment(request,category_slug,id):
             print('saved')
             return redirect('object_view',category_slug=post.category,id=post.id)
     else:
-        form=CommentForm()
+        intial = {'user':request.user.username}
+        form=CommentForm(initial=intial)
     return render(request,'add_comment.html',{'form':form})
 @csrf_exempt
 def search_view(request):
@@ -221,8 +222,8 @@ def list_of_post_by_category(request,category_slug):
     if category_slug:
         category = get_object_or_404(models.Category,slug=category_slug)
         post = post.filter(category=category)
-    context = {'categories':categories,'object':post,'category':category}
-    return render(request,'services.html',context)
+    context = {'object':post,'category':category}
+    return render(request,'category.html',context)
 
 def list_of_categories(request):
     post = models.Post.objects.filter(access=True)
