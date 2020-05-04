@@ -69,7 +69,7 @@ Author URL: http://w3layouts.com
           <div class="container-fluid">
             <a class="navbar-brand" href="/">
               <label class="lohny"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Students</label>Hub</a>
-            <!-- if logo is image enable this   
+            <!-- if logo is image enable this
               <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
               </a> -->
@@ -78,7 +78,7 @@ Author URL: http://w3layouts.com
               aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-  
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mx-lg-auto ml-auto">
                 <li class="nav-item active">
@@ -87,20 +87,23 @@ Author URL: http://w3layouts.com
                 <li class="nav-item">
                   <a class="nav-link" href="/upload">Upload</a>
                 </li>
+                <li class="nav-item">
+  								<a class="nav-link" href="{%url 'list_of_categories'%}">Courses</a>
+  							</li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="services.html">Courses</a>
                 </li> -->
-  
+
                 {%if user.is_staff %}
                 <li class="nav-item">
-                  <a class="nav-link" href="/approve">Approvals {{approvals}}</a>
+                  <a class="nav-link" href="/approve">Pending Approvals: {{approvals}}</a>
                 </li>
                 {%endif%}
               </ul>
-  
+
             </div>
             <script>
-              $(document).ready(function(){ 
+              $(document).ready(function(){
                 $("#txtSearch").autocomplete({
                   source: "/ajax_calls/search/",
                   minLength: 2,
@@ -135,7 +138,7 @@ Author URL: http://w3layouts.com
     </div>
     <!--//banner-slider-->
   </section>
-  
+
 <section class="w3l-contact-main w3l-contact3">
 	<div class="contact1-bg py-5">
 		<div class="container py-lg-5">
@@ -190,7 +193,7 @@ Author URL: http://w3layouts.com
             <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
             <a href="{{post.id}}/delete">delete</a>
         </li>
-        
+
     {% else %}
         <li><a href="{{post.link}}">{{ post.title }}</a>
             <input type="hidden" value="{{post.pk}}" name="id">
@@ -239,7 +242,7 @@ Author URL: http://w3layouts.com
 		</div>
 	</div> -->
 </section>
-	
+
 <!-- footer -->
 <section class="w3l-footer-16">
     <!-- <div class="w3l-footer-16-main py-5">
@@ -251,7 +254,7 @@ Author URL: http://w3layouts.com
 
                                 <a class="logo-2" href="index.html">
                                         <label class="lohny-2"><span class="fa fa-graduation-cap" aria-hidden="true"></span>Edu</label>Line</a>
-                           
+
                             <div class="ad-text-inf">
                                 <p><span class="color-hny">Address :</span> 27 Division St, New York, NY 10002, USA</p>
                              </div>
