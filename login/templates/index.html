@@ -60,7 +60,9 @@ Author URL: http://w3layouts.com
 						<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span><a href="mailto:info@example.com">Need help? Contact Us </a>
 
 						</li> -->
+            	{%if user.is_authenticated %}
 						<li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+            {%endif%}
 					</ul>
 				</div>
 			</div>
