@@ -61,7 +61,7 @@ def search_view(request):
     print (request)
     if request.method == 'GET':
         name = request.GET['txtSearch']
-        object = models.Post.objects.filter(title__startswith=name,access=True)
+        object = models.Post.objects.filter(title__icontains=name,access=True)
         return render(request,'search.html',{'object':object,'name':name})
 
 def upload_view(request):

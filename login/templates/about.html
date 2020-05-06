@@ -33,7 +33,7 @@ Author URL: http://w3layouts.com
             {%if user.is_authenticated %}
             <li class="log-link mr-3"><a class="sign-in"  href="/"><span class="fa fa-user"></span> Hi {{user.username}}</a></li>
             {% else %}
-            <li class="log-link mr-3"><a class="sign-in"  href="login/"><span class="fa fa-user"></span> Sign In</a></li>
+            <li class="log-link mr-3"><a class="sign-in"  href="{% url 'login_view' %}"><span class="fa fa-user"></span> Sign In</a></li>
             {%endif%}						<!-- <li><a href="#"><span class="fa fa-facebook"></span></a></li>
 						<li><a href="#"><span class="fa fa-instagram"></span></a> </li>
 						<li><a href="#"><span class="fa fa-twitter"></span></a></li>
@@ -180,8 +180,8 @@ Author URL: http://w3layouts.com
 								<h3><b>Upload Files Page</b></h3>
                 <br/>
 								{% if user.is_authenticated %}
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								<button id='pdf' onclick="mypdffunction()">PDF</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<button id='pdf' onclick="mypdffunction()">PDF</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<button id='link' onclick="mylinkfunction()">LINK</button>
 								<div id="divid" style="display: none;" >
 								<form id="formid" method="post" enctype="multipart/form-data" >

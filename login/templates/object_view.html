@@ -240,7 +240,8 @@ Author URL: http://w3layouts.com
 				{% endif %}
 			</ul>
 			{% else %}
-			  <p>You are not logged in. To access the files please signup or login.</p>
+      <div><i>You are not logged in. Either 	<a href="{% url 'login_view' %}"><strong>Login</strong></a> or <a href="{% url 'signup_view' %}"><strong>Sign-Up</strong></a>
+in order to access this functionality.</i></div><br/>
 			   <ul>
 				   {% if post.access == True %}
 				   {% if post.pdf.url != null %}

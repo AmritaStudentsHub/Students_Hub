@@ -253,8 +253,9 @@ Author URL: http://w3layouts.com
 					{% endfor %}
 				</ol>
 				{% else %}
-				  <p>You are not logged in. Please 	<a href="{% url 'login_view' %}">login</a> to access these files.</p>
-				   <ol>
+        <div><i>You are not logged in. Either 	<a href="{% url 'login_view' %}"><strong>Login</strong></a> or <a href="{% url 'signup_view' %}"><strong>Sign-Up</strong></a>
+        in order to access this functionality.</i></div><br/>
+        <ol>
 					   {% for post in object %}
 					   {% if post.access == True %}
 					   {% if post.pdf.url != null %}
