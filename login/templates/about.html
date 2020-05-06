@@ -138,22 +138,22 @@ Author URL: http://w3layouts.com
 	<!--//banner-slider-->
 </section>
 <script>
-	document.getElementById("id_pdf").style.display ="none";
-	function myFunction() {
-  		var x = document.getElementById("id_pdf");
- 		var y = document.getElementById("id_link");
-		var z = document.getElementById("name");
-  		if (x.style.display == "none") {
-    		x.style.display = "block";
-    		y.style.display = "none";
-			z.innerHTML="Link"
-  		} else {
-    		x.style.display = "none";
-			y.style.display = "block";
-			z.innerHTML = "PDF"
-		  }
-	}
-
+		function mypdffunction(){
+			var p = document.getElementById('id_pdf');
+			var l = document.getElementById('id_link');
+			var d = document.getElementById('divid');
+			d.style.display='block';
+			l.style.display = 'none';
+			p.style.display = 'block';
+		}
+		function mylinkfunction(){
+			var p = document.getElementById('id_pdf');
+			var l = document.getElementById('id_link');
+			var d = document.getElementById('divid');
+			d.style.display='block';
+			p.style.display = 'none';
+			l.style.display = 'block';
+		}
 </script>
 
 <section class="w3l-wecome-content-6">
@@ -161,7 +161,7 @@ Author URL: http://w3layouts.com
 	  <div class="ab-content-6-mian py-5">
 			 <div class="container py-lg-5">
 					<div class="welcome-grids row">
-							<div class="col-lg-6 mb-lg-0 mb-5">
+							<div class="col-lg-6 mb-lg-0 mb-5" >
 								<!-- <h6>About Us</h6>
 								<h3 class="hny-title">
 									Improving Lives Through Learning
@@ -175,13 +175,16 @@ Author URL: http://w3layouts.com
 								</div> -->
 								<h3><b>Upload Files Page</b></h3>
 								{% if user.is_authenticated %}
-								<form method="post" enctype="multipart/form-data" >
+								<button id='pdf' onclick="mypdffunction()">PDF</button>
+								<button id='link' onclick="mylinkfunction()">LINK</button>
+								<div id="divid" style="display: none;" >
+								<form id="formid" method="post" enctype="multipart/form-data" >
 									{% csrf_token %}
 									{{ form.as_p }}
-									<button id="name" onclick="myFunction()">Link</button>
 									<button type="submit">Upload</button>
 									<input type="button" value="Cancel" onclick="history.back()">
 								</form>
+								</div>
 								{% else %}
                 <br>
 									<div><strong><i>You are not logged in. Either Login or Sign-up in order to access this functionality.</i></strong></div>
