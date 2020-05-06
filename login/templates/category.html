@@ -224,7 +224,7 @@ Author URL: http://w3layouts.com
 					{% for post in object %}
 					{% if post.access == True %}
 					{% if post.pdf.url != null %}
-						<li><a href="{{post.pdf.url}}"><b><i>{{ post.title }}<i></b></a>
+						<li><a href="{{post.pdf.url}}"><b><i>{{ post.title }} [PDF]<i></b></a>
 						  <br><td>Rating:  {{post.rating}}/5.0</td>
 						</li>
 						<form action="{% url 'rate_vector' post.id %}" method="POST">
@@ -236,7 +236,7 @@ Author URL: http://w3layouts.com
 
 
 					{% else %}
-						<li><a href="{{post.link}}"><b><i>{{ post.title }}</i></b></a>
+						<li><a href="{{post.link}}"><b><i>{{ post.title }} [Link]</i></b></a>
 						 <br>Rating:   {{post.rating}}/5.0</td>
            </li>
 						<form action="{% url 'rate_vector' post.id %}" method="POST">
@@ -257,12 +257,12 @@ Author URL: http://w3layouts.com
 					   {% for post in object %}
 					   {% if post.access == True %}
 					   {% if post.pdf.url != null %}
-						   <li><a href="{%url 'login_view'%}">{{ post.title }}</a>
+						   <li><a href="{%url 'login_view'%}">{{ post.title }} [PDF]</a>
 							 <td>   {{post.rating}}/5.0</td>
 						   </li>
 
 					   {% else %}
-						   <li><a href="{% url 'login_view'%}">{{ post.title }}</a>
+						   <li><a href="{% url 'login_view'%}">{{ post.title }} [Link]</a>
 							 <td>   {{post.rating}}/5.0</td>
 						   </li>
 					   {% endif %}

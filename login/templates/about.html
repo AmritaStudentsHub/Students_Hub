@@ -30,8 +30,11 @@ Author URL: http://w3layouts.com
 			<div class="container-fluid">
 				<div class="row">
 					<ul class="social-top col-md-7">
-						<li class="log-link mr-3"><a class="sign-in"  href="#"><span class="fa fa-user"></span> Hi {{user}}</a></li>
-						<!-- <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+            {%if user.is_authenticated %}
+            <li class="log-link mr-3"><a class="sign-in"  href="/"><span class="fa fa-user"></span> Hi {{user.username}}</a></li>
+            {% else %}
+            <li class="log-link mr-3"><a class="sign-in"  href="login/"><span class="fa fa-user"></span> Sign In</a></li>
+            {%endif%}						<!-- <li><a href="#"><span class="fa fa-facebook"></span></a></li>
 						<li><a href="#"><span class="fa fa-instagram"></span></a> </li>
 						<li><a href="#"><span class="fa fa-twitter"></span></a></li>
 						<li><a href="#"><span class="fa fa-vimeo"></span></a> </li>
@@ -49,8 +52,9 @@ Author URL: http://w3layouts.com
 						<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span><a href="mailto:info@example.com">Need help? Contact Us </a>
 
 						</li> -->
-						<li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
-					</ul>
+            {%if user.is_authenticated %}
+            <li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+            {%endif%}					</ul>
 				</div>
 			</div>
 		</div>
@@ -174,11 +178,14 @@ Author URL: http://w3layouts.com
 									<a href="services.html"> Read More</a>
 								</div> -->
 								<h3><b>Upload Files Page</b></h3>
+                <br/>
 								{% if user.is_authenticated %}
-								<button id='pdf' onclick="mypdffunction()">PDF</button>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								<button id='pdf' onclick="mypdffunction()">PDF</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 								<button id='link' onclick="mylinkfunction()">LINK</button>
 								<div id="divid" style="display: none;" >
 								<form id="formid" method="post" enctype="multipart/form-data" >
+                  <br/>
 									{% csrf_token %}
 									{{ form.as_p }}
 									<button type="submit">Upload</button>
