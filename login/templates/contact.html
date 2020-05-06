@@ -185,23 +185,23 @@ Author URL: http://w3layouts.com
           {% for post in object %}
     <form method="POST" id =update_{{post.pk}} action="{% url 'approve_file_view' %}" enctype='multipart/form-data'>
         {% csrf_token %}
+        <li>
     {% if post.access == False %}
     {% if post.pdf.url is not None %}
-        <li><a href="{{post.pdf.url}}"><b>{{ post.title }} [File]</b></a>&emsp;&emsp;&emsp;&emsp;
+        <a href="{{post.pdf.url}}"><b>{{ post.title }} [File]</b></a>&emsp;&emsp;&emsp;&emsp;
             <input type="hidden" value="{{post.pk}}" name="id">
             <button style="float: center; position: relative;"type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();"><i><strong>Approve<strong></i></button>&emsp;&emsp;
-              <button style="float: right;position: absolute;"><a style="color:black;" href="{{post.id}}/delete"><i><strong>Delete<strong></i></a></button>
-        </li><br/>
 
     {% else %}
-        <li><a href="{{post.link}}"><b><div style="position: relative;">{{ post.title }} [Link]</div></b></a>&emsp;&emsp;&emsp;&emsp;
+        <a href="{{post.link}}"><b><div style="position: relative;">{{ post.title }} [Link]</div></b></a>&emsp;&emsp;&emsp;&emsp;
             <input type="hidden" value="{{post.pk}}" name="id">
             <button style="float: center; position: relative;" type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();"><i><strong>Approve<strong></i></button>&emsp;&emsp;
-            <button style="float: right;position: absolute;"><a style="color:black;" href="{{post.id}}/delete"><i><strong>Delete<strong></i></a></button>
-        </li><br/>
     {% endif %}
     {% endif %}
+    
 </form>
+<a style="color:black;" href="{{post.id}}/delete"><input type="button" value="Delete" /></a>&emsp;&emsp;
+</li><br/>
     {% endfor %}
 				</div>
 				<!-- <div class="map col-lg-6">

@@ -61,7 +61,7 @@ def search_view(request):
     print (request)
     if request.method == 'GET':
         name = request.GET['txtSearch']
-        object = models.Post.objects.filter(title__startswith=name)
+        object = models.Post.objects.filter(title__startswith=name,access=True)
         return render(request,'search.html',{'object':object,'name':name})
 
 def upload_view(request):
@@ -165,7 +165,7 @@ def logout_view(request):
 def autocompleteModel(request):
     if request.is_ajax():
         q = request.GET.get('term', '').capitalize()
-        search_qs = models.Post.objects.filter(title__startswith=q)
+        search_qs = models.Post.objects.filter(title__startswith=q,access=True)
         results = []
         print (q)
         for r in search_qs:
