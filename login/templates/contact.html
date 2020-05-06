@@ -187,18 +187,18 @@ Author URL: http://w3layouts.com
         {% csrf_token %}
     {% if post.access == False %}
     {% if post.pdf.url is not None %}
-        <li><a href="{{post.pdf.url}}"><b>{{ post.title }}</b></a>
+        <li><a href="{{post.pdf.url}}"><b>{{ post.title }} [File]</b></a>&emsp;&emsp;&emsp;&emsp;
             <input type="hidden" value="{{post.pk}}" name="id">
-            <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
-            <a href="{{post.id}}/delete">delete</a>
-        </li>
+            <button style="float: center; position: relative;"type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();"><i><strong>Approve<strong></i></button>&emsp;&emsp;
+              <button style="float: right;position: absolute;"><a style="color:black;" href="{{post.id}}/delete"><i><strong>Delete<strong></i></a></button>
+        </li><br/>
 
     {% else %}
-        <li><a href="{{post.link}}"><b>{{ post.title }}</b></a>
+        <li><a href="{{post.link}}"><b><div style="position: relative;">{{ post.title }} [Link]</div></b></a>&emsp;&emsp;&emsp;&emsp;
             <input type="hidden" value="{{post.pk}}" name="id">
-            <button type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();">Approve</button>
-            <a href="{{post.id}}/delete">delete</a>
-        </li>
+            <button style="float: center; position: relative;" type="submit" name="access" onchange="$('#update_{{post.pk}}').submit();"><i><strong>Approve<strong></i></button>&emsp;&emsp;
+            <button style="float: right;position: absolute;"><a style="color:black;" href="{{post.id}}/delete"><i><strong>Delete<strong></i></a></button>
+        </li><br/>
     {% endif %}
     {% endif %}
 </form>

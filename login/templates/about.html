@@ -194,12 +194,11 @@ Author URL: http://w3layouts.com
 								</div>
 								{% else %}
                 <br>
-									<div><strong><i>You are not logged in. Either Login or Sign-up in order to access this functionality.</i></strong></div>
+									<div><i>You are not logged in. Either 	<a href="{% url 'login_view' %}"><strong>Login</strong></a> or <a href="{% url 'signup_view' %}"><strong>Sign-Up</strong></a>
+ in order to access this functionality.</i></div>
                   <br>
-									<a href="{% url 'login_view' %}">Login</a>
-                  <br><br>
-                  <p><i>OR</i></p>
-									<a href="{% url 'signup_view' %}">SignUp</a>
+
+
 								{% endif %}
 							</div>
 							<div class="col-lg-6 welcome-image">

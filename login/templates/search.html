@@ -53,8 +53,9 @@ Author URL: http://w3layouts.com
 						<li class="top_li mr-lg-0"><span class="fa fa-envelope-o"></span><a href="mailto:info@example.com">Need help? Contact Us </a>
 
 						</li> -->
-						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'logout_view' %}"><span class="fa fa-user"></span> Logout</a></li>
-					</ul>
+            {%if user.is_authenticated %}
+            <li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+            {%endif%}						</ul>
 				</div>
 			</div>
 		</div>
@@ -92,8 +93,13 @@ Author URL: http://w3layouts.com
                   <a class="nav-link" href="/upload">Upload</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/approve">Approvals</a>
+                  <a class="nav-link" href="{%url 'list_of_categories'%}">Courses</a>
                 </li>
+                {%if user.is_staff %}
+  							<li class="nav-item">
+  								<a class="nav-link" href="/approve">Pending Approvals {{approvals}}</a>
+  							</li>
+  							{%endif%}
 
 
                 <!-- <li class="nav-item">
@@ -211,52 +217,54 @@ Author URL: http://w3layouts.com
 
 					{%if user.is_authenticated%}
 				</div>
-				<h3>Searched Files: <td>{{name}}</td></h3>
+				<h3>Searched Files: <td>{{name}}&emsp;&emsp;&emsp;&emsp;&emsp;</td></h3>
 <ol>
     {% for post in object %}
     {% if post.access == True %}
     {% if post.pdf.url != null %}
-        <li><a href="{{post.pdf.url}}">{{ post.title }}[pdf]</a>
+        <li><a href="{{post.pdf.url}}">{{ post.title }} [File]</a>
           <td>   {{post.rating}}/5.0</td>
         </li>
         <form action="{% url 'rate_vector' post.id %}" method="POST">
           {% csrf_token %}
           <input type="number" min="1" max="5"  id="rating" name="rating">
-          <input type="submit" name="submit" value="add rating">
+          <input type="submit" name="submit" value="Add Rating">
       </form>
-        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
-        <br></br>
+        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments<br/><br/></a>
+
 
     {% else %}
-        <li><a href="{{post.link}}">{{ post.title }}[link]</a>
+        <li><a href="{{post.link}}">{{ post.title }} [Link]</a>
           <td>   {{post.rating}}/5.0</td>
         </li>
         <form action="{% url 'rate_vector' post.id %}" method="POST">
           {% csrf_token %}
           <input type="number" min="1" max="5"  id="rating" name="rating">
-          <input type="submit" name="submit" value="add rating">
+          <input type="submit" name="submit" value="Add Rating">
       </form>
-        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br>
+        <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments<br/><br/></a>
     {% endif %}
     {% endif %}
     {% endfor %}
 </ol>
 {% else %}</div>
-   <h3>Searched Files: <td>{{name}}</td></h3>
+   <h3>Searched Files: <td>{{name}}&emsp;&emsp;&emsp;&emsp;</td></h3><br/>
    <ol>
        {% for post in object %}
        {% if post.access == True %}
        {% if post.pdf.url != null %}
-           <li><a href="{% url 'login_view'%}">{{ post.title }}[pdf]</a>
+       <br/>
+           <li><a href="{% url 'login_view'%}">{{ post.title }} [File]</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
-           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br></br>
+           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br/>
 
        {% else %}
-           <li><a href="{%url 'login_view'%}">{{ post.title }}[link]</a>
+       <br/>
+           <li><a href="{%url 'login_view'%}">{{ post.title }} [Link]</a>
              <td>   {{post.rating}}/5.0</td>
            </li>
-           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
+           <a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br/>
        {% endif %}
        {% endif %}
        {% endfor %}

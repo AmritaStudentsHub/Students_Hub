@@ -39,8 +39,9 @@ Author URL: http://w3layouts.com
 					</ul>
 					<ul class="accounts col-md-5">
 
-						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'logout_view' %}"><span class="fa fa-user"></span> Logout</a></li>
-					</ul>
+            {%if user.is_authenticated %}
+            <li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+            {%endif%}							</ul>
 				</div>
 			</div>
 		</div>

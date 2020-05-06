@@ -39,8 +39,9 @@ Author URL: http://w3layouts.com
 					</ul>
 					<ul class="accounts col-md-5">
 
-						<li class="log-link mr-3"><a class="sign-in"  href="{% url 'logout_view' %}"><span class="fa fa-user"></span> Logout</a></li>
-					</ul>
+            {%if user.is_authenticated %}
+            <li class="log-link mr-3"><a class="sign-in"  href="/logout"><span class="fa fa-user"></span> Logout</a></li>
+            {%endif%}						</ul>
 				</div>
 			</div>
 		</div>
@@ -224,7 +225,7 @@ Author URL: http://w3layouts.com
 					{% for post in object %}
 					{% if post.access == True %}
 					{% if post.pdf.url != null %}
-						<li><a href="{{post.pdf.url}}"><b><i>{{ post.title }} [PDF]<i></b></a>
+						<li><a href="{{post.pdf.url}}"><b><i>{{ post.title }} [File]<i></b></a>
 						  <br><td>Rating:  {{post.rating}}/5.0</td>
 						</li>
 						<form action="{% url 'rate_vector' post.id %}" method="POST">
@@ -232,7 +233,7 @@ Author URL: http://w3layouts.com
 							<input type="number" min="1" max="5" id="rating" name="rating">
 							<input type="submit" name="submit" value="Rate">
 					</form>
-						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a></br><br>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br/><br/>
 
 
 					{% else %}
@@ -244,20 +245,20 @@ Author URL: http://w3layouts.com
 							<input type="number" min="1" max="5" id="rating" name="rating">
 							<input type="submit" name="submit" value="Rate">
 					</form>
-						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a>
-          </br>
+						<a href="{% url 'object_view' category_slug=post.category id=post.id %}">View comments</a><br/><br/>
+
 
 					{% endif %}
 					{% endif %}
 					{% endfor %}
 				</ol>
 				{% else %}
-				  <p>You are not logged in if you wanted to see the files login</p>
+				  <p>You are not logged in. Please 	<a href="{% url 'login_view' %}">login</a> to access these files.</p>
 				   <ol>
 					   {% for post in object %}
 					   {% if post.access == True %}
 					   {% if post.pdf.url != null %}
-						   <li><a href="{%url 'login_view'%}">{{ post.title }} [PDF]</a>
+						   <li><a href="{%url 'login_view'%}">{{ post.title }} [File]</a>
 							 <td>   {{post.rating}}/5.0</td>
 						   </li>
 
