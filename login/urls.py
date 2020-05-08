@@ -13,7 +13,7 @@ urlpatterns=[
     path('approve/',views.approve_view,name='approve_view'),
     path('approved/',views.approve_file_view,name='approve_file_view'),
     url(r'^ajax_calls/search/', views.autocompleteModel),
-    path('approve/<id>/delete', views.delete_view, name='delete_view'),
+    # path('approve/<id>/delete', views.delete_view, name='delete_view'),
     path('sample/',views.sample_view,name='sample_view'),
     path("logout", views.logout_request, name="logout"),
     path('category/',views.list_of_categories,name='list_of_categories'),

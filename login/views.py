@@ -86,6 +86,10 @@ def approve_file_view(request):
     object = models.Post.objects.all()
     print ('it is working')
     # set the status if request method is post
+    if request.method == 'POST' and 'delete' in request.POST:
+        delete_id = request.POST.get("id")
+        models.Post.objects.filter(pk=delete_id).delete()
+        return redirect('http://localhost:8000/approve/')  
     if request.method == "POST":
         order_id = request.POST.get("id")
         print (order_id)
@@ -97,22 +101,22 @@ def approve_file_view(request):
     return redirect('http://localhost:8000/approve/')
     # return render(request, 'approve_page.html', {'object':object})
 
-def delete_view(request,id):
-    if request.user.is_staff:
-        obj = get_object_or_404(models.Post, id = id) 
+# def delete_view(request,id):
+#     if request.user.is_staff:
+#         obj = get_object_or_404(models.Post, id = id) 
     
-        if request.method =="POST": 
-            # delete object 
-            obj.delete() 
-            # after deleting redirect to  
-            # home page 
-            return HttpResponseRedirect("/") 
+#         if request.method =="POST": 
+#             # delete object 
+#             obj.delete() 
+#             # after deleting redirect to  
+#             # home page 
+#             return HttpResponseRedirect("/") 
     
-        return render(request, "delete_view.html")
-    else:
-        return redirect('/')
-    # print ('delete is working')
-    # return approve_view(request)
+#         return render(request, "delete_view.html")
+#     else:
+#         return redirect('/')
+#     # print ('delete is working')
+#     # return approve_view(request)
 
 def sample_view(request):
     return render(request,'samplehome.html')
